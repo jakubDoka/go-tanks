@@ -1,0 +1,21 @@
+<b name="Menu" stl="game_menu_button"/>
+
+<div hidden id="poppup">
+    <b name="Resume" stl="menu_button"/>
+    <b name="Exit" stl="menu_button"/>
+</>
+
+<div style="size: fill;">
+    <#><sprite style="size: fill; region: All;"/><#>
+</>
+
+<bar id="bar" style="
+    background: .3 .3 .3;
+    margin: 50;
+    size: fill 0;
+    text_margin: fill 5;
+    text_scale: 2;
+    text_color: black;
+">
+    <text id="score" text="0/0"/>
+</>

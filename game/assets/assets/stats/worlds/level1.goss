@@ -1,0 +1,7 @@
+level1{
+    spawn_rate: 1;
+    spawns: tank1;
+    player: tank2;
+    tile_size: 100;
+}
+

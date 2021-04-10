@@ -1,0 +1,20 @@
+<text id="message" style="
+    text_scale: 10;
+    text_margin: fill;
+"/>
+
+<div style="
+    text_scale: 3; 
+    margin: fill;
+    composition: horizontal;
+"> 
+    Total score: <text id="total"/>
+</>
+
+<div style="
+    composition: horizontal;
+    margin: 0 fill;
+">
+    <b name="Exit" stl="menu_button"/>
+    <b name="Retry" stl="menu_button"/>
+</>

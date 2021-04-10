@@ -1,0 +1,93 @@
+<div id="main" style="
+    size: fill 0;
+    margin: 0 fill 0 0;
+    text_scale: 10;
+    text_margin: fill 0;
+"> 
+    GO-TANKS
+    <b name="Singleplayer" stl="menu_button"/>
+    <b hidden name="Multiplayer" stl="menu_button"/>
+    <b name="Settings" stl="menu_button"/>
+    <div style="composition: horizontal; margin: fill 0;">
+        <b name="Errors" stl="menu_split_button"/>
+        <b name="Mods" stl="menu_split_button"/>
+    </>
+    <b name="Exit" stl="menu_button"/>
+</>
+
+<div hidden id="errors" style="
+    text_scale: 5;
+    text_margin: fill 0;
+    size: fill;
+    text_color: red;
+">
+    ERRORS
+    <scroll style="
+        resizing_y: ignore;
+        size: fill;
+        text_scale: 1.5;
+        text_align: middle;
+        text_size: fill;
+    ">
+        <text id="error_log"/>
+    </>
+</>
+
+<div hidden id="mods" style="
+    text_scale: 5;
+    text_margin: fill 0;
+    size: fill;
+">
+    MODS
+    <scroll id="mod_list" style="
+        size: fill;
+        bars: true;
+        resizing_y: ignore;
+    ">
+
+    </>
+
+    <text id="mod_status" style="
+        text_scale: 2;
+        text_color: red;
+    "/>
+    
+    <div style="
+        composition: horizontal;
+        text_scale: 2;
+        text_color: black;
+        background: 1; 
+        size: fill 0;
+        margin: 30;
+    ">
+        <area id="mod_input" style="
+            size: fill 0;
+            padding: 5;
+            cursor_mask: black;
+            text_align: right;
+        "/>
+        <button id="mod_submit" style="
+            text_scale: inherit;
+            text_color: inherit;
+            hover_mask: .7 .7 .7;
+            size: 0 fill;
+            text_margin: fill;
+            padding: 5 0;
+        ">Submit</>
+    </>
+</>
+
+<div hidden id="maps" style="
+    text_scale: 5;
+    text_margin: fill;
+    size: fill;
+"> 
+    MAPS
+    <scroll id="map_list" style="
+        size: 0 fill;
+        resizing_y: ignore;
+        margin: fill 0;
+    "/>
+</>
+
+<b hidden name="Back" stl="menu_button"/>

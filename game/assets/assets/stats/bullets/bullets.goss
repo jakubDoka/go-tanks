@@ -1,0 +1,13 @@
+bullet{
+    damage: 2;
+    speed: 600;
+}
+
+bullet1{
+    speed: 400;
+    size: 3;
+}
+
+bullet2{
+    damage: 2;
+}

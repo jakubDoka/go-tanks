@@ -1,0 +1,35 @@
+tank1{
+    max_health: 10;
+    speed: 1000;
+    needed_score: 5;
+    turret_pivot: 0;
+    turret_offset: 0;
+    turret_len: 20;
+    memory: 1;
+    bullet: bullet1;
+    next: tank2;
+    size: 15;
+    retreat_ratio: 2;
+}
+
+tank2{
+    max_health: 15;
+    speed: 1500;
+    needed_score: 10;
+    turret_pivot: 0;
+    turret_offset: 0;
+     turret_len: 20;
+    memory: 1.5;
+    bullet: bullet2;
+    next: tank3;
+    size: 20;
+    retreat_ratio: 3;
+   
+}
+
+tank3{
+    reload_speed: .7;
+    max_health: 30;
+    needed_score: 100;
+    bullet: bullet;
+}

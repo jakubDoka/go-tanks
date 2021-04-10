@@ -1,0 +1,19 @@
+<!b>
+    <button hidden={hidden} id={name} styles="button {stl}">{name}</>
+<!/>
+
+<!option>
+    <div style="
+        text_color: black;
+        background: white;
+        text_scale: 3; 
+        composition: horizontal;
+        padding: 20;
+    ">
+        {name}\ <button id={name} style="
+            all_masks: black;
+            text_scale: 3; 
+            hover_mask: .3 .3 .3;
+        ">{button_text}</>
+    </>
+<!/>

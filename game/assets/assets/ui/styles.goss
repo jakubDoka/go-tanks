@@ -1,0 +1,22 @@
+button{
+    text_color: black;
+    hover_mask: .7 .7 .7;
+}
+
+menu_button{
+    text_scale: 3;
+    padding: 20;
+    margin: fill 10;
+}
+
+menu_split_button{
+    text_scale: 3;
+    padding: 20;
+    margin: 5 10;
+}
+
+game_menu_button{
+    test_scale: 3;
+    padding: 5;
+    margin: fill 10;
+}
