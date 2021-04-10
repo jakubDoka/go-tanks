@@ -287,7 +287,7 @@ func (a *Assets) LoadPrefabs() {
 
 func (a *Assets) LoadConfig() {
 	a.Config = Config{}
-	err := a.Json(a.Path("config.json"), a.Config)
+	err := a.Json(a.Path("config.json"), &a.Config)
 	a.Log(ErrConfig.Wrap(err))
 
 }

@@ -40,7 +40,8 @@
 ">
     MODS
     <scroll id="mod_list" style="
-        size: fill;
+        size: 0 fill;
+        margin: fill 0;
         bars: true;
         resizing_y: ignore;
     ">

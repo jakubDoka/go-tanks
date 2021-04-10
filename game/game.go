@@ -89,6 +89,7 @@ func (g *Game) SetupMainMenu() {
 						g.Assets.Mods = append(g.Assets.Mods[:i], g.Assets.Mods[i+1:]...)
 						g.Assets.SaveGameConfig()
 						update_list()
+						mod_status.SetText("reboot the game to apply changes")
 						break
 					}
 				}
@@ -149,7 +150,7 @@ func (g *Game) SetupMainMenu() {
 	}
 
 	if len(g.Assets.Errors) == 0 {
-		errors.Hidden()
+		errors.SetHidden(true)
 	} else {
 		var all string
 		for _, e := range g.Errors {
