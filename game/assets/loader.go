@@ -105,7 +105,6 @@ func (a *Assets) Compile() {
 		a.Sheet.AddMarkdown(v)
 	}
 	a.Sheet.Pack()
-	fmt.Println(a.Sheet.Regions)
 
 	a.CompileStats()
 	a.CompileUI()
@@ -200,7 +199,7 @@ func (a *Assets) Tank(name string, stl RawStyle) Tank {
 func (a *Assets) World(name string, stl RawStyle) World {
 	return World{
 		Size:           stl.Vec("size", mat.V(5000, 5000)),
-		Tile:           stl.Vec("tile_size", mat.V(300, 300)),
+		Tile:           stl.Vec("tile_size", mat.V(250, 250)),
 		Scale:          stl.Vec("scale", mat.V(1.5, 1.5)),
 		Friction:       stl.Float("friction", 10),
 		SpawnRate:      stl.Float("spawn_rate", 60),
@@ -209,8 +208,8 @@ func (a *Assets) World(name string, stl RawStyle) World {
 		Background:     stl.RGBA("background_color", rgba.Black),
 		Spawns:         stl.IdentList("spawns"),
 		Player:         stl.Ident("player", ""),
-		WinMessage:     stl.Ident("win_message", "YOU WON!"),
-		LoseMessage:    stl.Ident("lose_message", "YOU LOST!"),
+		WinMessage:     stl.Sentence("win_message", "YOU WON"),
+		LoseMessage:    stl.Sentence("lose_message", "YOU LOST"),
 		DisabledEnemy:  stl.IdentSet("disabled_enemy"),
 		DisabledPlayer: stl.IdentSet("disabled_player"),
 	}
@@ -253,7 +252,12 @@ func (a *Assets) LoadStyles(styles ...string) {
 		tf := t.Field(i)
 		style := goss.Styles{}
 		a.LoadStyle(a.Path("stats", strings.ToLower(tf.Name)), true, style)
-		vf.Set(reflect.ValueOf(style))
+		if vf.IsZero() {
+			vf.Set(reflect.ValueOf(style))
+		} else {
+			vf.Interface().(goss.Styles).Add(style)
+		}
+
 	}
 }
 
@@ -265,7 +269,6 @@ func (a *Assets) LoadUI() {
 	a.LoadStyle(root, false, a.Styles)
 
 	list := a.ListPath(root, false, "goml")
-	fmt.Println(list)
 	for _, p := range list {
 		bts, err := a.Loader.ReadFile(p)
 		if err != nil {
@@ -483,6 +486,16 @@ func (r RawStyle) IdentSet(key string) map[string]bool {
 		np[k] = true
 	}
 	return np
+}
+
+func (r RawStyle) Sentence(key, def string) (res string) {
+	res = strings.Join(r.IdentList(key), " ")
+
+	if res == "" {
+		return def
+	}
+
+	return
 }
 
 func (r RawStyle) IdentList(key string) (res []string) {
