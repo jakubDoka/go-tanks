@@ -1,7 +1,38 @@
-level1{
+ferplay_insanity{
+    size: 1000 1000;
+    spawn_rate: 30;
+    spawns: tank3;
+    player: tank3;
+    tile_size: 100;
+}
+
+insane{
     spawn_rate: 1;
+    spawns: tank2;
+    player: tank3;
+    tile_size: 100;
+}
+
+hard{
+    spawn_rate: 3;
     spawns: tank1;
     player: tank2;
+    tile_size: 100;
+}
+
+medium{
+    spawn_rate: 4;
+    disable_enemy: tank3;
+    spawns: tank1;
+    player: tank2;
+    tile_size: 100;
+}
+
+easy{
+    spawn_rate: 5;
+    disable_enemy: tank2;
+    spawns: tank1;
+    player: tank3;
     tile_size: 100;
 }
 

@@ -24,12 +24,11 @@ tank2{
     next: tank3;
     size: 20;
     retreat_ratio: 3;
-   
 }
 
 tank3{
     reload_speed: .7;
     max_health: 30;
-    needed_score: 100;
+    needed_score: 30;
     bullet: bullet;
 }

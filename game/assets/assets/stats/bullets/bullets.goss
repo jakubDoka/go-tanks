@@ -4,7 +4,7 @@ bullet{
 }
 
 bullet1{
-    speed: 400;
+    speed: 350;
     size: 3;
 }
 

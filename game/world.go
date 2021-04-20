@@ -464,10 +464,11 @@ func (w *World) UpdateScore() {
 func (w *World) LevelUp(id int) {
 	t := w.Tanks.Item(id)
 	next, _, ok := w.Assets.Tanks.Tank(t.Next)
-	if !ok {
+	if !ok || (t.Player && w.DisabledPlayer[t.Next]) || w.DisabledEnemy[t.Next] {
 		if t.Player {
 			w.EndGame(true)
 		}
+		t.Score = 0
 		return
 	}
 	if t.Player {

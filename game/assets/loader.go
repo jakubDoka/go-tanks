@@ -199,18 +199,20 @@ func (a *Assets) Tank(name string, stl RawStyle) Tank {
 
 func (a *Assets) World(name string, stl RawStyle) World {
 	return World{
-		Size:         stl.Vec("size", mat.V(5000, 5000)),
-		Tile:         stl.Vec("tile_size", mat.V(300, 300)),
-		Scale:        stl.Vec("scale", mat.V(1.5, 1.5)),
-		Friction:     stl.Float("friction", 10),
-		SpawnRate:    stl.Float("spawn_rate", 60),
-		SpawnScaling: stl.Float("spawn_scaling", .6),
-		TeamCount:    stl.Int("team_count", 2),
-		Background:   stl.RGBA("background_color", rgba.Black),
-		Spawns:       stl.IdentList("spawns"),
-		Player:       stl.Ident("player", ""),
-		WinMessage:   stl.Ident("win_message", "YOU WON!"),
-		LoseMessage:  stl.Ident("lose_message", "YOU LOST!"),
+		Size:           stl.Vec("size", mat.V(5000, 5000)),
+		Tile:           stl.Vec("tile_size", mat.V(300, 300)),
+		Scale:          stl.Vec("scale", mat.V(1.5, 1.5)),
+		Friction:       stl.Float("friction", 10),
+		SpawnRate:      stl.Float("spawn_rate", 60),
+		SpawnScaling:   stl.Float("spawn_scaling", .6),
+		TeamCount:      stl.Int("team_count", 2),
+		Background:     stl.RGBA("background_color", rgba.Black),
+		Spawns:         stl.IdentList("spawns"),
+		Player:         stl.Ident("player", ""),
+		WinMessage:     stl.Ident("win_message", "YOU WON!"),
+		LoseMessage:    stl.Ident("lose_message", "YOU LOST!"),
+		DisabledEnemy:  stl.IdentSet("disabled_enemy"),
+		DisabledPlayer: stl.IdentSet("disabled_player"),
 	}
 }
 
@@ -422,6 +424,7 @@ type World struct {
 	Background                        mat.RGBA
 	Player, WinMessage, LoseMessage   string
 	Spawns                            []string
+	DisabledEnemy, DisabledPlayer     map[string]bool
 }
 
 type Tank struct {
@@ -472,6 +475,14 @@ func (r RawStyle) Sub(key string, fallback goss.Styles) RawStyle {
 			Style: fallback[key],
 		}),
 	}
+}
+
+func (r RawStyle) IdentSet(key string) map[string]bool {
+	np := map[string]bool{}
+	for _, k := range r.IdentList(key) {
+		np[k] = true
+	}
+	return np
 }
 
 func (r RawStyle) IdentList(key string) (res []string) {
