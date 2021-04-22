@@ -253,6 +253,11 @@ func (w *World) DrawTank(t *Tank) {
 
 	if !t.BarInter.Done() {
 		col := mat.Alpha(t.BarInter.Update(w.Delta))
+		if t.Group != p.Group {
+			col = col.Mul(rgba.Red)
+		} else {
+			col = col.Mul(rgba.Green)
+		}
 		progress := float64(t.Health) / float64(t.MaxHealth) * math.Pi
 		if progress == math.Pi {
 			progress = 0
@@ -262,7 +267,6 @@ func (w *World) DrawTank(t *Tank) {
 }
 
 func (w *World) DrawTile(pos mat.Vec, size float64) {
-
 	sqr := mat.Square(pos, size)
 	min := w.Hasher.Adr(sqr.Min)
 	max := w.Hasher.Adr(sqr.Max).Add(mat.P(1, 1))
@@ -296,7 +300,7 @@ func (w *World) CreateTank(player bool, group int, pos mat.Vec, rot, trot float6
 
 	t.HealInter.End = 1
 	t.HitInter.End = 1
-	t.BarInter.Start = .5
+	t.BarInter.Start = .8
 	t.HitInter.Timer = timer.Period(.2)
 	t.HealInter.Timer = timer.Period(tank.RegenerationTick)
 	t.BarInter.Timer = timer.Period(2)

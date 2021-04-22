@@ -7,6 +7,7 @@ ferplay_insanity{
 }
 
 insane{
+    team_count: 100;
     spawn_rate: 1;
     spawns: tank2;
     player: tank3;
