@@ -1,4 +1,18 @@
-<b name="Menu" stl="game_menu_button"/>
+<div style="
+    composition: horizontal;
+    margin: fill 0;
+"> 
+    <b name="Menu" stl="game_menu_button"/>
+    <div style="
+        background: white;
+        text_scale: 2;
+        margin: 10;
+        text_color: black;
+    ">
+        <text id="fps" text="something"/>
+    </>
+</>
+
 
 <div hidden id="poppup">
     <b name="Resume" stl="menu_button"/>

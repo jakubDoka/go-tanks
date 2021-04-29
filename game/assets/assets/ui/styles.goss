@@ -18,5 +18,5 @@ menu_split_button{
 game_menu_button{
     test_scale: 3;
     padding: 5;
-    margin: fill 10;
+    margin: 10 10;
 }

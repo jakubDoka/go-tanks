@@ -11,6 +11,7 @@ import (
 	"github.com/jakubDoka/mlok/ggl/key/binding"
 	"github.com/jakubDoka/mlok/ggl/ui"
 	"github.com/jakubDoka/mlok/logic/ai"
+	"github.com/jakubDoka/mlok/logic/frame"
 	"github.com/jakubDoka/mlok/logic/spatial"
 	"github.com/jakubDoka/mlok/logic/timer"
 	"github.com/jakubDoka/mlok/mat"
@@ -51,14 +52,21 @@ type World struct {
 	rnd.Rnd
 
 	Buff []int
+
+	FpsTimer timer.Timer
+	Limmiter frame.Limitter
+	Fps      int
 }
 
 func NWorld(a *assets.Assets) *World {
 	w := &World{
-		Assets: a,
-		Zoom:   1,
-		Player: -1,
+		Assets:   a,
+		Zoom:     1,
+		Player:   -1,
+		FpsTimer: timer.Period(1),
 	}
+
+	w.Limmiter.SetFPS(60)
 
 	w.Batch.Texture = ggl.NTexture(w.Sheet.Pic, false)
 
@@ -104,6 +112,13 @@ func (w *World) SetScene(name string) {
 }
 
 func (w *World) Update(win *ggl.Window, delta float64) {
+	if w.FpsTimer.TickDoneReset(delta) {
+		w.UpdateFps()
+		w.Fps = 0
+	}
+	w.Fps++
+	//w.Limmiter.Regulate()
+
 	w.Delta = math.Min(delta, .1)
 	win.SetCamera(w.View())
 	w.Frame = win.Rect()
@@ -164,6 +179,12 @@ func (w *World) Update(win *ggl.Window, delta float64) {
 
 	win.Update()
 	win.Clear(w.Background.Inverted())
+}
+
+func (w *World) UpdateFps() {
+	scene := w.UIScenes["singleplayer"]
+	fps := scene.ID("fps").Module.(*ui.Text)
+	fps.SetText(fmt.Sprintf("FPS: %d", w.Fps))
 }
 
 func (w *World) Spawn() {

@@ -18,7 +18,8 @@ tank2{
     needed_score: 10;
     turret_pivot: 0;
     turret_offset: 0;
-     turret_len: 20;
+    turret_len: 20;
+    reload_speed: .9;
     memory: 1.5;
     bullet: bullet2;
     next: tank3;

@@ -5,6 +5,11 @@ import (
 	"github.com/jakubDoka/tanks/game"
 )
 
+type Student struct {
+	Id   string `json:"id"`
+	Name string `json:"name"`
+}
+
 func main() {
 	game := game.NGame()
 
